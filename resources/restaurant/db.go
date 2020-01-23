@@ -14,28 +14,55 @@ type dbWrapper struct {
 // then creates a new restaurant model - which is then inserted into the
 // database.
 func (w *dbWrapper) CreateRestaurant(i *createInput) error {
+  // construct record
+  r := restaurant{
+    Name: i.Name,
+    Location: i.Location,
+    TelephoneNumber: i.TelephoneNumber,
+  }
 
-  // ...
-
-  return nil
+  // insert record and handle error
+  if _, err := w.db.Conn.
+    Model(&r).
+    Insert(); err != nil {
+      return err
+  } else {
+    return nil
+  }
 }
 
 // GetRestaurant takes an id and fetches the restaurant record in the database
 // with that id.
 func (w *dbWrapper) GetRestaurant(id int64) (*restaurant, error) {
+  // construct record with ID only
+  r := restaurant{
+    RestaurantID: id,
+  }
 
-  // ...
-
-  return nil, nil
+  // run query and handle error
+  if _, err := w.db.Conn.
+    Model(&r).
+    Select(); err != nil {
+      return nil, err
+  } else {
+    return &r, nil
+  }
 }
 
 // GetAllRestaurants returns a slice containing all restaurant records in the
 // database.
 func (w *dbWrapper) GetAllRestaurants() ([]restaurant, error) {
+  // define space for result set
+  var restaurants []restaurant
 
-  // ...
-
-  return nil, nil
+  // run query and handlr error
+  if _, err := w.db.Conn.
+    Model(&restaurants).
+    Select(); err != nil {
+      return nil, err
+  } else {
+    return restaurants, nil
+  }
 }
 
 // UpdateRestaurant takes an id and a pointer to an instance of an updateInput
