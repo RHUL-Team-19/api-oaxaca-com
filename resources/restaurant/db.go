@@ -22,7 +22,7 @@ func (w *dbWrapper) CreateRestaurant(i *createInput) error {
 
 // GetRestaurant takes an id and fetches the restaurant record in the database
 // with that id.
-func (w *dbWrapper) GetRestaurant(id int64) (*Restaurant, error) {
+func (w *dbWrapper) GetRestaurant(id int64) (*restaurant, error) {
 
   // ...
 
@@ -31,7 +31,7 @@ func (w *dbWrapper) GetRestaurant(id int64) (*Restaurant, error) {
 
 // GetAllRestaurants returns a slice containing all restaurant records in the
 // database.
-func (w *dbWrapper) GetAllRestaurants() ([]Restaurant, error) {
+func (w *dbWrapper) GetAllRestaurants() ([]restaurant, error) {
 
   // ...
 

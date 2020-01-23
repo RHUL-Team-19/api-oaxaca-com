@@ -10,7 +10,7 @@ import (
 func New(db *db.DB) *Resource {
   return &Resource{
     db: &dbWrapper{
-      db: db,
+      Conn: db,
     },
   }
 }
