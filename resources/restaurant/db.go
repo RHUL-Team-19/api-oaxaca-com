@@ -7,7 +7,7 @@ import (
 // type dbWrapper wraps a database connection and provides higher-level
 // operations/abstractions on the database.
 type dbWrapper struct {
-  Conn *db.DB
+  db *db.DB
 }
 
 // CreateRestaurant takes a pointer to an instance of a createInput struct and
@@ -40,7 +40,7 @@ func (w *dbWrapper) GetRestaurant(id int64) (*restaurant, error) {
   }
 
   // run query and handle error
-  if _, err := w.db.Conn.
+  if err := w.db.Conn.
     Model(&r).
     Select(); err != nil {
       return nil, err
@@ -55,8 +55,8 @@ func (w *dbWrapper) GetAllRestaurants() ([]restaurant, error) {
   // define space for result set
   var restaurants []restaurant
 
-  // run query and handlr error
-  if _, err := w.db.Conn.
+  // run query and handle error
+  if err := w.db.Conn.
     Model(&restaurants).
     Select(); err != nil {
       return nil, err
@@ -69,17 +69,37 @@ func (w *dbWrapper) GetAllRestaurants() ([]restaurant, error) {
 // struct and then fetches the restaurant record in the database with the
 // corresponding id - and updates its fields.
 func (w *dbWrapper) UpdateRestaurant(id int64, i *updateInput) error {
+  // construct record
+  r := restaurant{
+    Name: *i.Name,
+    Location: *i.Location,
+    TelephoneNumber: *i.TelephoneNumber,
+  }
 
-  // ...
-
-  return nil
+  // run query and handle error
+  if _, err := w.db.Conn.
+    Model(&r).
+    UpdateNotZero(); err != nil {
+      return err
+  } else {
+    return nil
+  }
 }
 
 // DeleteRestaurant takes an id and deletes the record in the database with
 // that id.
 func (w *dbWrapper) DeleteRestaurant(id int64) error {
+  // construct record with ID only
+  r := restaurant{
+    RestaurantID: id,
+  }
 
-  // ...
-
-  return nil
+  // run query and handle error
+  if _, err := w.db.Conn.
+    Model(&r).
+    Delete(); err != nil {
+      return err
+  } else {
+    return nil
+  }
 }

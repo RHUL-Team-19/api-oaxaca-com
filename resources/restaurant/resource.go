@@ -34,7 +34,7 @@ func (m *Resource) AttachRoutes(e *gin.Engine) {
 
 // CreateTables takes all models and creates tables for them in the database.
 func (m *Resource) CreateTables() error {
-  return m.db.Conn.CreateTablesFor(
+  return m.db.db.CreateTablesFor(
     new(restaurant),
   )
 }
