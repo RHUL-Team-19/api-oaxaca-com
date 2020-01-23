@@ -1,9 +1,13 @@
 package restaurant
 
+import (
+  "github.com/gin-gonic/gin"
+)
+
 // type Resource wraps a database connection and implements the
 // api-oaxaca-com/packages/server.resource interface.
 type Resource struct {
-  Conn *dbWrapper
+  db *dbWrapper
 }
 
 // AttachRoutes mounts requests handlers to the gin engine.

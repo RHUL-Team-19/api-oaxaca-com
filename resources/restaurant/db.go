@@ -7,7 +7,7 @@ import (
 // type dbWrapper wraps a database connection and provides higher-level
 // operations/abstractions on the database.
 type dbWrapper struct {
-  db *db.DB
+  Conn *db.DB
 }
 
 // CreateRestaurant takes a pointer to an instance of a createInput struct and
