@@ -12,17 +12,17 @@ func New(resources ...resource) (*Server, error) {
   // create gin engine
   r := gin.Default()
 
-  for i := 0; i < len(modules); i++ {
+  for i := 0; i < len(resources); i++ {
     // attach resource's routes to engine
-    modules[i].AttachRoutes(r)
+    resources[i].AttachRoutes(r)
 
     // create resource's table
-    if err := modules[i].CreateTables(); err != nil {
+    if err := resources[i].CreateTables(); err != nil {
       return nil, err
     }
 
     // insert default records into resource's tables
-    if err := modules[i].CreateDefaultRecords(); err != nil {
+    if err := resources[i].CreateDefaultRecords(); err != nil {
       return nil, err
     }
   }
