@@ -18,15 +18,15 @@ within the database.
 ### inputs and input validation
 ```
 create_input {
-  name: String! // 3 <= length < 20; non-nullable field
-  telephone_number: String! // 5 <= length < 20; non-nullable field
-  location: String! // 5 <= length < 20; non-nullable field
+  name: String! // 3 <= length <= 20; non-nullable field
+  telephone_number: String! // 5 <= length <= 20; non-nullable field
+  location: String! // 5 <= length <= 20; non-nullable field
 }
 
 update_input {
-  name: String // 3 <= length < 20; nullable field
-  telephone_number: String // 5 <= length < 20; nullable field
-  location: String // 5 <= length < 20; nullable field
+  name: String // 3 <= length <= 20; nullable field
+  telephone_number: String // 5 <= length <= 20; nullable field
+  location: String // 5 <= length <= 20; nullable field
 }
 ```
 When POSTing to the server, a create_input must be provided. When updating an
