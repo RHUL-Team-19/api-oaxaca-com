@@ -17,7 +17,10 @@ func (r *Resource) postHandler(c *gin.Context) {
   }
 
   // input validation
-  // ...
+  if valid, reason := input.IsValid(); !valid {
+    c.JSON(http.StatusBadRequest, gin.H{"error": reason})
+    return
+  }
 
   // pass input to DB method
   if err := r.db.CreateRestaurant(&input); err != nil {
@@ -25,6 +28,6 @@ func (r *Resource) postHandler(c *gin.Context) {
     return
   }
 
-  // return success
+  // return 201 status
   c.Status(http.StatusCreated)
 }

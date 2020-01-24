@@ -1,6 +1,7 @@
 package restaurant
 
 import (
+  "net/http"
   "strconv"
   "github.com/gin-gonic/gin"
 )
@@ -18,6 +19,12 @@ func (r *Resource) deleteHandler(c *gin.Context) {
     return
   }
 
-  // ...
+  // delete record and handle error
+  if err := r.db.DeleteRestaurant(id); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
+  }
 
+  // return 204 status
+  c.Status(http.StatusNoContent)
 }

@@ -97,6 +97,7 @@ func (w *dbWrapper) DeleteRestaurant(id int64) error {
   // run query and handle error
   if _, err := w.db.Conn.
     Model(&r).
+    WherePK().
     Delete(); err != nil {
       return err
   } else {
