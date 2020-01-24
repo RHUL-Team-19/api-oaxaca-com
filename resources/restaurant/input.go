@@ -11,16 +11,16 @@ type createInput struct {
 // IsValid ensures the fields provided in createInput match a set of rules. If
 // validation fails, a reason is returned - which should be sent to the client.
 func (i *createInput) IsValid() (bool, string) {
-  if len(i.Name) < 3 {
-    return false, "Name must be at least 3 characters in length"
+  if len(i.Name) < 3 || len(i.Name) > 20 {
+    return false, "Length of name must be between 3 and 20"
   }
 
-  if len(i.Location) < 5 {
-    return false, "Location must be at least 5 characters in length"
+  if len(i.Location) < 5 || len(i.Location) > 20 {
+    return false, "Length of location must be between 5 and 20"
   }
 
-  if len(i.TelephoneNumber) < 5 {
-    return false, "Telephone number must be at least 5 characters in length"
+  if len(i.TelephoneNumber) < 5 || len(i.TelephoneNumber) > 20 {
+    return false, "Length of telephone number must be between 5 and 20"
   }
 
   return true, ""
@@ -38,16 +38,17 @@ type updateInput struct {
 // IsValid ensures the fields provided in updateInput match a set of rules. If
 // validation fails, a reason is returned - which should be sent to the client.
 func (i *updateInput) IsValid() (bool, string) {
-  if i.Name != nil && len(*i.Name) < 3 {
-    return false, "Name must be at least 3 characters in length"
+  if i.Name != nil && (len(*i.Name) < 3 || len(*i.Name) > 20) {
+    return false, "Length of name must be between 3 and 20"
   }
 
-  if i.Location != nil && len(*i.Location) < 5 {
-    return false, "Location must be at least 5 characters in length"
+  if i.Location != nil && (len(*i.Location) < 5 || len(*i.Location) > 20) {
+    return false, "Length of location must be between 5 and 20"
   }
 
-  if i.TelephoneNumber != nil && len(*i.TelephoneNumber) < 5 {
-    return false, "Telephone number must be at least 5 characters in length"
+  if i.TelephoneNumber != nil && (len(*i.TelephoneNumber) < 5 ||
+    len(*i.TelephoneNumber) > 20) {
+      return false, "Length of telephone number must be between 5 and 20"
   }
 
   return true, ""
