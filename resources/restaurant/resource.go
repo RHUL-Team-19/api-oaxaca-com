@@ -16,20 +16,20 @@ func (m *Resource) AttachRoutes(e *gin.Engine) {
   g := e.Group("/restaurants")
 
   // attach POST handler
-  g.POST("/", postHandler)
+  g.POST("/", m.postHandler)
 
   // attach GET handlers
-  g.GET("/", getAllHandler)
-  g.GET("/:id", getOneHandler)
+  g.GET("/", m.getAllHandler)
+  g.GET("/:id", m.getOneHandler)
 
   // attach PUT handlers
-  g.PUT("/:id", putHandler)
+  g.PUT("/:id", m.putHandler)
 
   // attach PATCH handlers
-  g.PATCH("/:id", patchHandler)
+  g.PATCH("/:id", m.patchHandler)
 
   // attach DELETE handelrs
-  g.DELETE("/:id", deleteHandler)
+  g.DELETE("/:id", m.deleteHandler)
 }
 
 // CreateTables takes all models and creates tables for them in the database.

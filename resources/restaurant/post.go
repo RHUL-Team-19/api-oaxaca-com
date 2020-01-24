@@ -1,10 +1,30 @@
 package restaurant
 
 import (
+  "net/http"
   "github.com/gin-gonic/gin"
 )
 
 // postHandler is called when a HTTP POST request is made to /restaurants.
-func postHandler(c *gin.Context) {
+func (r *Resource) postHandler(c *gin.Context) {
+  // unmarshaled JSON will be put here
+  var input createInput
+
+  // parse input
+  if err := c.ShouldBindJSON(&input); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
+  }
+
+  // input validation
   // ...
+
+  // pass input to DB method
+  if err := r.db.CreateRestaurant(&input); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
+  }
+
+  // return success
+  c.Status(http.StatusCreated)
 }
