@@ -46,12 +46,6 @@ GET /restaurants/{id}
 ```
 Fetch all restaurant records or fetch one restaurant by ID.
 
-### HTTP PUT
-```
-PUT /restaurants/{id}
-```
-Update/overwrite an existing restaurant record.
-
 ### HTTP PATCH
 ```
 PATCH /restaurants/{id}

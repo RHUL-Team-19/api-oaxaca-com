@@ -69,16 +69,20 @@ func (w *dbWrapper) GetAllRestaurants() ([]restaurant, error) {
 // struct and then fetches the restaurant record in the database with the
 // corresponding id - and updates its fields.
 func (w *dbWrapper) UpdateRestaurant(id int64, i *updateInput) error {
-  // construct record
+  // construct empty record
   r := restaurant{
-    Name: *i.Name,
-    Location: *i.Location,
-    TelephoneNumber: *i.TelephoneNumber,
+    RestaurantID: id,
   }
+
+  // assign changed fields
+  if i.Name != nil { r.Name = *i.Name }
+  if i.Location != nil { r.Location = *i.Location }
+  if i.TelephoneNumber != nil { r.TelephoneNumber = *i.TelephoneNumber }
 
   // run query and handle error
   if _, err := w.db.Conn.
     Model(&r).
+    WherePK().
     UpdateNotZero(); err != nil {
       return err
   } else {

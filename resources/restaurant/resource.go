@@ -22,9 +22,6 @@ func (m *Resource) AttachRoutes(e *gin.Engine) {
   g.GET("/", m.getAllHandler)
   g.GET("/:id", m.getOneHandler)
 
-  // attach PUT handlers
-  g.PUT("/:id", m.putHandler)
-
   // attach PATCH handlers
   g.PATCH("/:id", m.patchHandler)
 
