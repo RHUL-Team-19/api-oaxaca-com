@@ -7,6 +7,20 @@ api-oaxaca-com/packages/server.New function.
 ```
 menuMeal {
   meal_id: ID!
+  name: String!
+  price: Float!
+  description: String!
+  is_vegan: Boolean!
+  is_vegetarian: Boolean!
+  does_contain_egg: Boolean!
+  does_contain_soy: Boolean!
+  does_contain_fish: Boolean!
+  does_contain_lactose: Boolean!
+  does_contain_wheat: Boolean!
+  does_contain_nuts: Boolean!
+  does_contain_gluten: Boolean!
+  does_contain_dairy: Boolean!
+  image_url: String!
 }
 ```
 This package defines a menu meal model - which represents a meal (which is on
@@ -14,9 +28,39 @@ the restaurant's menu) record within the database.
 
 ### inputs and input validation
 ```
-create_input {}
+create_input {
+  name: String!
+  price: Float!
+  description: String!
+  is_vegan: Boolean!
+  is_vegetarian: Boolean!
+  does_contain_egg: Boolean!
+  does_contain_soy: Boolean!
+  does_contain_fish: Boolean!
+  does_contain_lactose: Boolean!
+  does_contain_wheat: Boolean!
+  does_contain_nuts: Boolean!
+  does_contain_gluten: Boolean!
+  does_contain_dairy: Boolean!
+  image_url: String!
+}
 
-update_input {}
+update_input {
+  name: String
+  price: Float
+  description: String
+  is_vegan: Boolean
+  is_vegetarian: Boolean
+  does_contain_egg: Boolean
+  does_contain_soy: Boolean
+  does_contain_fish: Boolean
+  does_contain_lactose: Boolean
+  does_contain_wheat: Boolean
+  does_contain_nuts: Boolean
+  does_contain_gluten: Boolean
+  does_contain_dairy: Boolean
+  image_url: String
+}
 ```
 When POSTing to the server, a create_input must be provided. When updating an
 existing record in the database, an update_input must be provided along with
