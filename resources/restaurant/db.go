@@ -34,18 +34,17 @@ func (w *dbWrapper) CreateRestaurant(i *createInput) error {
 // GetRestaurant takes an id and fetches the restaurant record in the database
 // with that id.
 func (w *dbWrapper) GetRestaurant(id int64) (*restaurant, error) {
-  // construct record with ID only
-  r := restaurant{
-    RestaurantID: id,
-  }
+  // construct empty record
+  r := new(restaurant)
 
   // run query and handle error
   if err := w.db.Conn.
-    Model(&r).
+    Model(r).
+    Where("restaurant_id = ?", id).
     Select(); err != nil {
       return nil, err
   } else {
-    return &r, nil
+    return r, nil
   }
 }
 
