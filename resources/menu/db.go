@@ -14,7 +14,22 @@ type dbWrapper struct {
 // then creates a new meal model - which is then inserted into the database.
 func (w *dbWrapper) CreateMenuMeal(i *createInput) error {
   // construct record
-  r := menuMeal{}
+  r := menuMeal{
+    Name: i.Name,
+    Price: i.Price,
+    Description: i.Description,
+    IsVegan: i.IsVegan,
+    IsVegetarian: i.IsVegetarian,
+    DoesContainEgg: i.DoesContainEgg,
+    DoesContainSoy: i.DoesContainSoy,
+    DoesContainFish: i.DoesContainFish,
+    DoesContainLactose: i.DoesContainLactose,
+    DoesContainWheat: i.DoesContainWheat,
+    DoesContainNuts: i.DoesContainNuts,
+    DoesContainGluten: i.DoesContainGluten,
+    DoesContainDairy: i.DoesContainDairy,
+    ImageURL: i.ImageURL,
+  }
 
   // insert record and handle error
   if _, err := w.db.Conn.
@@ -69,7 +84,20 @@ func (w *dbWrapper) UpdateMenuMeal(id int64, i *updateInput) error {
   }
 
   // assign changed fields
-  // ...
+  if i.Name != nil { r.Name = *i.Name }
+  if i.Price != nil { r.Price = *i.Price }
+  if i.Description != nil { r.Description = *i.Description }
+  if i.IsVegan != nil { r.IsVegan = *i.IsVegan }
+  if i.IsVegetarian != nil { r.IsVegetarian = *i.IsVegetarian }
+  if i.DoesContainEgg != nil { r.DoesContainEgg = *i.DoesContainEgg }
+  if i.DoesContainSoy != nil { r.DoesContainSoy = *i.DoesContainSoy }
+  if i.DoesContainFish != nil { r.DoesContainFish = *i.DoesContainFish }
+  if i.DoesContainLactose != nil { r.DoesContainLactose = *i.DoesContainLactose }
+  if i.DoesContainWheat != nil { r.DoesContainWheat = *i.DoesContainWheat }
+  if i.DoesContainNuts != nil { r.DoesContainNuts = *i.DoesContainNuts }
+  if i.DoesContainGluten != nil { r.DoesContainGluten = *i.DoesContainGluten }
+  if i.DoesContainDairy != nil { r.DoesContainDairy = *i.DoesContainDairy }
+  if i.ImageURL != nil { r.ImageURL = *i.ImageURL }
 
   // run query and handle error
   if _, err := w.db.Conn.
