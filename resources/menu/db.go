@@ -44,18 +44,17 @@ func (w *dbWrapper) CreateMenuMeal(i *createInput) error {
 // GetMenuMeal takes an id and fetches the meal record in the database with that
 // id.
 func (w *dbWrapper) GetMenuMeal(id int64) (*menuMeal, error) {
-  // construct record with ID only
-  r := menuMeal{
-    MealID: id,
-  }
+  // construct empty record
+  r := new(menuMeal)
 
   // run query and handle error
   if err := w.db.Conn.
-    Model(&r).
+    Model(r).
+    Where("meal_id = ?", id).
     Select(); err != nil {
       return nil, err
   } else {
-    return &r, nil
+    return r, nil
   }
 }
 
