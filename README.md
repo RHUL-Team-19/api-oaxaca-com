@@ -158,12 +158,20 @@ and are of the form:
 
 ### inputs
 #### create input
- Attribute name | Type | Required
-:---------------|:-----|:--------:
+ Attribute name      | Type    | Required
+:--------------------|:--------|:--------:
+ restaurant_id       | string  | yes
+ full_name           | string  | yes
+ password            | string  | yes
+ has_passed_training | boolean | yes
 
 #### update input
- Attribute name | Type | Required
-:---------------|:-----|:--------:
+ Attribute name      | Type    | Required
+:--------------------|:--------|:--------:
+ restaurant_id       | string  | yes
+ full_name           | string  | yes
+ password            | string  | yes
+ has_passed_training | boolean | yes
 
 
 ## /authentication
@@ -173,5 +181,7 @@ and are of the form:
 
 ### inputs
 #### authentication input
- Attribute name | Type | Required
-:---------------|:-----|:--------:
+ Attribute name | Type   | Required
+:---------------|:-------|:--------:
+ user_id        | string | yes
+ password       | string | yes
