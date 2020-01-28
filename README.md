@@ -23,6 +23,28 @@ fields and input validation can be found in each resource's readme file.
 If a field in an input fails a validation check, an error message (and
 appropriate HTTP status code) containing an reason/explanation will be returned.
 
+### authentication and authorisation
+In order to access most of the API resource endpoints, one must first
+authenticate by making a POST request containing user credentials to the
+/authentication resource. A valid set of credentials will return a payload
+containing a JSON web token (JWT) which must be sent in the "Authorization"
+header in future requests. This will allow access to restricted resource
+endpoints - which are defined below.
+```
+Authorization: bearer <JWT token string>
+```
+
+### access scope
+A token has a role associated with it. Some restricted endpoints require a
+specific role. E.g. in order to create a new restaurant, one must be of the
+role "manager". Roles are defined below. If a user's role is changed, a new
+token must be issued. Valid roles are:
+- waiter
+- kitchen
+- manager
+Some endpoints do not require a role - i.e. they are publicly available. This
+is denoted with an "all" role.
+
 ### resource record ids
 A resource record ID is a number in string form, and uniquely identifies a
 specific record for a specific resource. Record IDs are usually used in a URL
