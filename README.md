@@ -99,7 +99,6 @@ and are of the form:
  does_contain_nuts    | boolean | yes
  does_contain_wheat   | boolean | yes
  does_contain_dairy   | boolean | yes
- does_contain_wheat   | boolean | yes
  does_contain_gluten  | boolean | yes
  does_contain_lactose | boolean | yes
  image_url            | string  | yes
