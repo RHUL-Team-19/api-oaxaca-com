@@ -1,14 +1,67 @@
 # api-oaxaca-com
 The backend REST API for Oaxaca
 
+The API is split into multiple resources. A resource is an entity within the
+system - and thus one or more tables in the database. Example resources include:
+- restaurant
+- menu
+- staff
+The API allows CRUD (create, retrieve, update, delete) operations on these
+resources.
+
+### making requests and handling responses
+All data in a GET response payload will be serialised as JSON. A request which
+returns more than one object - via a list - will return null (instead of an
+empty list) if the result set is empty.
+A GET or DELETE to a specific resource record via its ID will return an error
+message if no record with that ID exists, along with an appropriate HTTP status
+code.
+
+Data sent to the server via POST and PATCH - as an input - must be serialised as
+JSON. All valid inputs are described below, and information regarding nullable
+fields and input validation can be found in each resource's readme file.
+If a field in an input fails a validation check, an error message (and
+appropriate HTTP status code) containing an reason/explanation will be returned.
+
+### resource record ids
+A resource record ID is a number in string form, and uniquely identifies a
+specific record for a specific resource. Record IDs are usually used in a URL
+when sending a GET or DELETE request to a specific record. E.g:
+```
+GET https://some-url.io/restaurants/12
+DELETE https://some-url.io/restaurants/15
+```
+A record ID can also be sent via a create or update input when creating a
+relation between two entities. For example, when creating a new member of staff:
+```json
+{
+  "restaurant_id": "12"
+  // other fields
+}
+```
+Record IDs are always sent as strings, never integer values.
+
+### error messages
+Error messages are returned when:
+- an input contains invalid field names
+- an input fails a validation check
+- an internal error occurs
+- a GET or DELETE is requested on a resource record ID that is non-existent
+and are of the form:
+```json
+{
+  "error": "<message text>"
+}
+```
+
 ## /menu
- Path  | Method | Access scope | Input             | Response      | Description
-:------|:------:|:-------------|:------------------|:--------------|------------------
- /     | GET    | All          | N/A               |               | Fetch all meals on the menu
- /{id} | GET    | All          | N/A               |               | Fetch a specific meal by its ID
- /     | POST   | Manager      | create input      |               | Add new meal to the menu
- /{id} | PATCH  | Manager      | update input      |               | Update a meal on the menu by its ID
- /{id} | DELETE | Manager      | N/A               |               | Remove a meal from the menu
+ Path  | Method | Access scope | Input             | Possible responses                                      | Description
+:------|:------:|:-------------|:------------------|:--------------------------------------------------------|------------------
+ /     | GET    | All          | N/A               | 200 with JSON payload or 400 with error                 | Fetch all meals on the menu
+ /{id} | GET    | All          | N/A               | 200 with JSON payload or null                           | Fetch a specific meal by its ID
+ /     | POST   | Manager      | create input      | 201 with no payload or 400 with error or 500 with error | Add new meal to the menu
+ /{id} | PATCH  | Manager      | update input      | 201 with no payload or 400 with error or 500 with error | Update a meal on the menu by its ID
+ /{id} | DELETE | Manager      | N/A               | 201 with no payload or 400 with error or 500 with error | Remove a meal from the menu
 
 ### inputs
 #### create input
@@ -51,13 +104,13 @@ The backend REST API for Oaxaca
 
 
 ## /restaurant
- Path  | Method | Access scope | Input             | Response      | Description
-:------|:------:|:-------------|:------------------|:--------------|------------------
- /     | GET    | Manager      | N/A               |               | Fetch all restaurants
- /{id} | GET    | Manager      | N/A               |               | Fetch a specific restaurant by its ID
- /     | POST   | Manager      | create input      |               | Create a new restaurant
- /{id} | PATCH  | Manager      | update input      |               | Update a restaurant by its ID
- /{id} | DELETE | Manager      | N/A               |               | Remove a restaurant
+ Path  | Method | Access scope | Input             | Possible responses                                      | Description
+:------|:------:|:-------------|:------------------|:--------------------------------------------------------|------------------
+ /     | GET    | Manager      | N/A               | 200 with JSON payload or 400 with error                 | Fetch all restaurants
+ /{id} | GET    | Manager      | N/A               | 200 with JSON payload or null                           | Fetch a specific restaurant by its ID
+ /     | POST   | Manager      | create input      | 201 with no payload or 400 with error or 500 with error | Create a new restaurant
+ /{id} | PATCH  | Manager      | update input      | 201 with no payload or 400 with error or 500 with error | Update a restaurant by its ID
+ /{id} | DELETE | Manager      | N/A               | 201 with no payload or 400 with error or 500 with error | Remove a restaurant
 
 ### inputs
 #### create input
@@ -76,13 +129,13 @@ The backend REST API for Oaxaca
 
 
 ## /staff
- Path  | Method | Access scope | Input             | Response      | Description
-:------|:------:|:-------------|:------------------|:--------------|------------------
- /     | GET    | Manager      | N/A               |               | Fetch all members of staff
- /{id} | GET    | Waiter       | N/A               |               | Fetch a specific member of staff by their ID
- /     | POST   | Manager      | create input      |               | Create a new member of staff
- /{id} | PATCH  | Manager      | update input      |               | Update a member of staff by their ID
- /{id} | DELETE | Manager      | N/A               |               | Delete a member of staff
+ Path  | Method | Access scope | Input             | Possible responses                                      | Description
+:------|:------:|:-------------|:------------------|:--------------------------------------------------------|------------------
+ /     | GET    | Manager      | N/A               | 200 with JSON payload or 400 with error                 | Fetch all members of staff
+ /{id} | GET    | Waiter       | N/A               | 200 with JSON payload or null                           | Fetch a specific member of staff by their ID
+ /     | POST   | Manager      | create input      | 201 with no payload or 400 with error or 500 with error | Create a new member of staff
+ /{id} | PATCH  | Manager      | update input      | 201 with no payload or 400 with error or 500 with error | Update a member of staff by their ID
+ /{id} | DELETE | Manager      | N/A               | 201 with no payload or 400 with error or 500 with error | Delete a member of staff
 
 ### inputs
 #### create input
@@ -95,9 +148,9 @@ The backend REST API for Oaxaca
 
 
 ## /authentication
- Path  | Method | Access scope | Input                | Response      | Description
-:------|:------:|:-------------|:---------------------|:--------------|:---------------------------------
- /     | POST   | All          | authentication input |               | Request a new token
+ Path  | Method | Access scope | Input                | Possible responses                                      | Description
+:------|:------:|:-------------|:---------------------|:--------------------------------------------------------|:---------------------------------
+ /     | POST   | All          | authentication input |                                                         | Request a new token
 
 ### inputs
 #### authentication input
