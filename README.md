@@ -36,7 +36,6 @@ relation between two entities. For example, when creating a new member of staff:
 ```json
 {
   "restaurant_id": "12"
-  // other fields
 }
 ```
 Record IDs are always sent as strings, never integer values.
