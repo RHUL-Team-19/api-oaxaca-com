@@ -118,7 +118,6 @@ and are of the form:
  does_contain_nuts    | boolean | no
  does_contain_wheat   | boolean | no
  does_contain_dairy   | boolean | no
- does_contain_wheat   | boolean | no
  does_contain_gluten  | boolean | no
  does_contain_lactose | boolean | no
  image_url            | string  | no
