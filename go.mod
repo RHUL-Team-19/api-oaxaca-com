@@ -5,8 +5,9 @@ go 1.13
 require (
 	api-oaxaca-com/packages/db v0.0.0
 	api-oaxaca-com/packages/server v0.0.0
-	api-oaxaca-com/resources/menu v0.0.0-00010101000000-000000000000
+	api-oaxaca-com/resources/menu v0.0.0
 	api-oaxaca-com/resources/restaurant v0.0.0
+	github.com/0xc0392b/envy v0.0.0-20200129005622-8213f89f5335
 )
 
 replace (

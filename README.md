@@ -6,6 +6,7 @@ system - and thus one or more tables in the database. Example resources include:
 - restaurant
 - menu
 - staff
+
 The API allows CRUD (create, retrieve, update, delete) operations on these
 resources.
 
@@ -42,6 +43,7 @@ token must be issued. Valid roles are:
 - waiter
 - kitchen
 - manager
+
 Some endpoints do not require a role - i.e. they are publicly available. This
 is denoted with an "all" role.
 
@@ -68,6 +70,7 @@ Error messages are returned when:
 - an input fails a validation check
 - an internal error occurs
 - a GET or DELETE is requested on a resource record ID that is non-existent
+
 and are of the form:
 ```json
 {

@@ -1,7 +1,7 @@
 ################################################################################
 ## Build
 ################################################################################
-ARG GO_VERSION=1.11
+ARG GO_VERSION=1.13
 
 FROM golang:${GO_VERSION}-alpine AS builder
 
@@ -14,6 +14,8 @@ WORKDIR /src
 
 COPY go.mod go.sum ./
 COPY *.go ./
+COPY packages/ ./packages/
+COPY resources/ ./resources/
 COPY vendor/ ./vendor/
 
 RUN go build -installsuffix 'static' -o /app .
@@ -30,5 +32,9 @@ COPY --from=builder /user/group /user/passwd /etc/
 COPY --from=builder /app /app
 
 USER nobody:nobody
+
+ENV GIN_MODE=release
+
+EXPOSE 8080
 
 ENTRYPOINT ["/app"]

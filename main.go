@@ -1,23 +1,24 @@
 package main
 
 import (
+  "github.com/0xc0392b/envy"
   "api-oaxaca-com/packages/db"
   "api-oaxaca-com/packages/server"
   "api-oaxaca-com/resources/menu"
   "api-oaxaca-com/resources/restaurant"
 )
 
-const (
+var (
   // HTTP server config
-  ServerHost = "0.0.0.0"
-  ServerPort = "8080"
+  ServerHost = envy.GetEnvAsStr("SERVER_HOST", "0.0.0.0")
+  ServerPort = envy.GetEnvAsStr("SERVER_PORT", "8080")
 
   // databse config
-  DBHost = "127.0.0.1"
-  DBPort = "5432"
-  DBUser = "oaxaca"
-  DBPass = "oaxaca"
-  DBName = "oaxaca"
+  DBHost = envy.GetEnvAsStr("DB_HOST", "127.0.0.1")
+  DBPort = envy.GetEnvAsStr("DB_PORT", "5432")
+  DBUser = envy.GetEnvAsStr("DB_USER", "oaxaca")
+  DBPass = envy.GetEnvAsStr("DB_PASS", "oaxaca")
+  DBName = envy.GetEnvAsStr("DB_NAME", "oaxaca")
 )
 
 func main() {
