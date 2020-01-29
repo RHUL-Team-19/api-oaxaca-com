@@ -1,4 +1,4 @@
-module api-oaxaca-com/packages/authentication
+module api-oaxaca-com/packages/auth
 
 go 1.13
 

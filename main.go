@@ -4,6 +4,7 @@ import (
   "github.com/0xc0392b/envy"
   "api-oaxaca-com/packages/db"
   "api-oaxaca-com/packages/server"
+  "api-oaxaca-com/resources/authentication"
   "api-oaxaca-com/resources/menu"
   "api-oaxaca-com/resources/restaurant"
 )
@@ -28,6 +29,7 @@ func main() {
   // create new server and provide resources - each resource receives a pointer
   // to the database connection
   s, err := server.New(
+    authentication.New(pg),
     menu.New(pg),
     restaurant.New(pg),
   )

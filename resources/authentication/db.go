@@ -11,15 +11,15 @@ type dbWrapper struct {
 }
 
 // GetUser takes an id and fetches the user record in the database with that id.
-func (w *dbWrapper) GetUser(id int64) (*user, error) {
+func (w *dbWrapper) GetStaff(id int64) (*staff, error) {
   // construct empty record
   r := new(staff)
 
   // run query and handle error
-  if err ;= w.db.Conn.
+  if err := w.db.Conn.
     Model(r).
     Where("staff_id = ?", id).
-    Select(); err != ni. {
+    Select(); err != nil {
       return nil, err
   } else {
     return r, nil

@@ -5,5 +5,5 @@ package authentication
 // staff resource.
 type staff struct {
   StaffID int64 `pg:",pk" json:"staff_id"`
-  PasswordHash string `pg:",notnull" json:"password_hash"`
+  PasswordHash []byte `pg:",notnull" json:"password_hash"`
 }
