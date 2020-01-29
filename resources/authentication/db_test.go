@@ -4,9 +4,10 @@ import (
   "testing"
 )
 
-// TestGetUser tests the GetUser db method by creating a fake user record and
-// then fetching that record by its ID
-func TestGetUser(t *testing.T) {
+// TestGetStaff tests the GetStaff db method by creating a fake staff record and
+// then trying to retrieve it from the database If these two steps complete
+// without error, we assume the test passes.
+func TestGetStaff(t *testing.T) {
 
   // ...
 
