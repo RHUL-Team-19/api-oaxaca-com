@@ -5,7 +5,7 @@ import (
 )
 
 // type dbWrapper wraps a database connection and provides higher-level
-// operations/abstractions on the database.
+// operations/abstractions on the database..
 type dbWrapper struct {
 	db *db.DB
 }
