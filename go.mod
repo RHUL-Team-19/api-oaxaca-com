@@ -3,7 +3,6 @@ module api-oaxaca-com
 go 1.13
 
 require (
-	api-oaxaca-com/packages/auth v0.0.0
 	api-oaxaca-com/packages/db v0.0.0
 	api-oaxaca-com/packages/server v0.0.0
 	api-oaxaca-com/resources/authentication v0.0.0
