@@ -6,6 +6,7 @@ import (
   "api-oaxaca-com/packages/server"
   "api-oaxaca-com/resources/menu"
   "api-oaxaca-com/resources/restaurant"
+  "api-oaxaca-com/resources/staff"
 )
 
 var (
@@ -30,6 +31,7 @@ func main() {
   s, err := server.New(
     menu.New(pg),
     restaurant.New(pg),
+    staff.New(pg),
   )
   if err != nil {
     panic(err)
