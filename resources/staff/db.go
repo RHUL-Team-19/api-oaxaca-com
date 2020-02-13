@@ -14,13 +14,16 @@ type dbWrapper struct {
 // then creates a new staff model - which is then inserted into the
 // database.
 func (w *dbWrapper) CreateStaff(i *createInput) error {
+	passwordHash := make([]byte, 0)
+
 	// construct record
 	r := staff{
-		RestaurantID:      i.RestaurantID,
-		FullName:          i.FullName,
-		UserName:          i.UserName,
-		PasswordHash:      i.PasswordHash,
+		RestaurantID: i.RestaurantID,
+		FullName: i.FullName,
+		Score: i.Score,
+		PasswordHash: passwordHash,
 		HasPassedTraining: i.HasPassedTraining,
+		Role: i.Role,
 	}
 
 	// insert record and handle error
@@ -82,14 +85,18 @@ func (w *dbWrapper) UpdateStaff(id int64, i *updateInput) error {
 	if i.FullName != nil {
 		r.FullName = *i.FullName
 	}
-	if i.UserName != nil {
-		r.UserName = *i.UserName
+	if i.Score != nil {
+		r.Score = *i.Score
 	}
-	if i.PasswordHash != nil {
-		r.PasswordHash = *i.PasswordHash
+	if i.Password != nil {
+		passwordHash := make([]byte, 0)
+		r.PasswordHash = passwordHash
 	}
 	if i.HasPassedTraining != nil {
 		r.HasPassedTraining = *i.HasPassedTraining
+	}
+	if i.Role != nil {
+		r.Role = *i.Role
 	}
 
 	// run query and handle error
