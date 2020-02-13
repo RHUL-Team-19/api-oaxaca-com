@@ -19,8 +19,8 @@ func (i *authenticationInput) IsValid() (bool, string) {
     return false, "User ID must be numerical"
   }
 
-  if len(i.Password) < 5 || len(i.Password) >= 64 {
-    return false, "Length of password must be between 5 and 64"
+  if len(i.Password) < 6 || len(i.Password) >= 32 {
+    return false, "Length of password must be between 6 and 32"
   }
 
   return true, ""
