@@ -26,19 +26,8 @@ func (r *Resource) postHandler(c *gin.Context) {
     return
   }
 
-  // parse ID
-  id, err := strconv.ParseInt(
-    input.StaffID,
-    10,
-    64,
-  )
-  if err != nil {
-    c.JSON(http.StatusBadRequest, gin.H{"error": "Bad ID"})
-    return
-  }
-
   // fetch staff by ID
-  staff, err := r.db.GetStaff(id)
+  staff, err := r.db.GetStaff(input.StaffID)
   if err != nil {
     c.JSON(http.StatusBadRequest, gin.H{"error": "ID does not exist"})
     return
