@@ -12,6 +12,9 @@ func New(resources ...resource) (*Server, error) {
   // create gin engine
   r := gin.Default()
 
+  // cross-origin middleware
+  r.Use(corsMW)
+
   for i := 0; i < len(resources); i++ {
     // attach resource's routes to engine
     resources[i].AttachRoutes(r)
