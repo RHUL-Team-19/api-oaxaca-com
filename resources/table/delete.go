@@ -1,4 +1,4 @@
-package staff
+package table
 
 import (
   "net/http"
@@ -6,7 +6,7 @@ import (
   "github.com/gin-gonic/gin"
 )
 
-// deleteHandler is called when a HTTP DELETE request is sent to /staffs.
+// deleteHandler is called when a HTTP DELETE request is sent to /tables.
 func (r *Resource) deleteHandler(c *gin.Context) {
   // parse ID from URL
   id, err := strconv.ParseInt(
@@ -20,7 +20,7 @@ func (r *Resource) deleteHandler(c *gin.Context) {
   }
 
   // delete record and handle error
-  if err := r.db.DeleteStaff(id); err != nil {
+  if err := r.db.DeleteTable(id); err != nil {
     c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
     return
   }

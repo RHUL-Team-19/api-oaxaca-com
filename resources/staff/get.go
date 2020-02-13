@@ -6,7 +6,7 @@ import (
   "github.com/gin-gonic/gin"
 )
 
-// getAllHandler is called when a HTTP GET request is made to /staff.
+// getAllHandler is called when a HTTP GET request is made to /staffs.
 func (r *Resource) getAllHandler(c *gin.Context) {
   // fetch all from database
   staffs, err := r.db.GetAllStaff()
@@ -19,7 +19,7 @@ func (r *Resource) getAllHandler(c *gin.Context) {
   c.JSON(http.StatusOK, staffs)
 }
 
-// getOneHandler is called when a HTTP GET request is made to /staff/{id}.
+// getOneHandler is called when a HTTP GET request is made to /staffs/{id}.
 func (r *Resource) getOneHandler(c *gin.Context) {
   // parse ID from URL
   id, err := strconv.ParseInt(

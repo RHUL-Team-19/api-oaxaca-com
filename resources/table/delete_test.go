@@ -1,4 +1,4 @@
-package staff
+package table
 
 import (
   "testing"
