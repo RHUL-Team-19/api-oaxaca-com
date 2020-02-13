@@ -7,7 +7,7 @@ type staff struct {
   RestaurantID int64 `pg:",fk" json:"restaurant_id"`
   FullName string `pg:",notnull" json:"full_name"`
   Score int `pg:",notnull,use_zero" json:"score"`
-  PasswordHash []byte `pg:",notnull" json:"password_hash"`
+  PasswordHash []byte `pg:",notnull" json:"-"`
   HasPassedTraining bool `pg:",notnull,use_zero" json:"has_passed_training"`
   Role string `pg:",notnull" json:"role"`
 }
