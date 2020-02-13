@@ -2,6 +2,7 @@ package staff
 
 import (
 	"api-oaxaca-com/packages/db"
+	"api-oaxaca-com/packages/auth"
 )
 
 // type dbWrapper wraps a database connection and provides higher-level
@@ -14,7 +15,10 @@ type dbWrapper struct {
 // then creates a new staff model - which is then inserted into the
 // database.
 func (w *dbWrapper) CreateStaff(i *createInput) error {
-	passwordHash := make([]byte, 0)
+	passwordHash, err := auth.HashPassword(i.Password)
+	if err != nil {
+		return err
+	}
 
 	// construct record
 	r := staff{
@@ -89,8 +93,11 @@ func (w *dbWrapper) UpdateStaff(id int64, i *updateInput) error {
 		r.Score = *i.Score
 	}
 	if i.Password != nil {
-		passwordHash := make([]byte, 0)
-		r.PasswordHash = passwordHash
+		if passwordHash, err := auth.HashPassword(*i.Password); err != nil {
+			return err
+		} else {
+			r.PasswordHash = passwordHash
+		}
 	}
 	if i.HasPassedTraining != nil {
 		r.HasPassedTraining = *i.HasPassedTraining
