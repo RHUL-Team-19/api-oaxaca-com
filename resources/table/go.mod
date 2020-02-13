@@ -1,4 +1,4 @@
-module api-oaxaca-com/resources/staff
+module api-oaxaca-com/resources/table
 
 go 1.13
 

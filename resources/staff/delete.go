@@ -6,7 +6,7 @@ import (
   "github.com/gin-gonic/gin"
 )
 
-// deleteHandler is called when a HTTP DELETE request is sent to /staff.
+// deleteHandler is called when a HTTP DELETE request is sent to /staffs.
 func (r *Resource) deleteHandler(c *gin.Context) {
   // parse ID from URL
   id, err := strconv.ParseInt(

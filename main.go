@@ -8,6 +8,7 @@ import (
   "api-oaxaca-com/resources/menu"
   "api-oaxaca-com/resources/restaurant"
   "api-oaxaca-com/resources/staff"
+  "api-oaxaca-com/resources/table"
 )
 
 var (
@@ -34,6 +35,7 @@ func main() {
     menu.New(pg),
     restaurant.New(pg),
     staff.New(pg),
+    table.New(pg),
   )
   if err != nil {
     panic(err)
