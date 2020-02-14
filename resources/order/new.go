@@ -1,5 +1,9 @@
 package order
 
+import (
+  "api-oaxaca-com/packages/db"
+)
+
 // New creates and returns a pointer to a new instance of Resource and passes in
 // a pointer to a new instance of dbWrapper - containing a pointer to a
 // database connection.

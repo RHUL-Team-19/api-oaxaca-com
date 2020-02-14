@@ -21,6 +21,7 @@ func (m *Resource) AttachRoutes(e *gin.Engine) {
 	// attach GET handlers
 	g.GET("/", m.getAllHandler)
 	g.GET("/:id", m.getOneHandler)
+	g.GET("/:id/meals", m.getMealsForOneHandler)
 
 	// attach PATCH handlers
 	g.PATCH("/:id", m.patchHandler)

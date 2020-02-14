@@ -95,3 +95,28 @@ func (r *Resource) getOneHandler(c *gin.Context) {
   // return result 200 as JSON
   c.JSON(http.StatusOK, order)
 }
+
+// getMealsForOneHandler is called when a HTTP GET request is made to
+// /orders/{id}/meals.
+func (r *Resource) getMealsForOneHandler(c *gin.Context) {
+  // parse ID from URL
+  id, err := strconv.ParseInt(
+    c.Param("id"),
+    10,
+    64,
+  )
+  if err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": "Bad ID"})
+    return
+  }
+
+  // fetch all from database by ID
+  meals, err := r.db.GetMealsForOrderID(id)
+  if err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": "ID does not exist"})
+    return
+  }
+
+  // return result 200 as JSON
+  c.JSON(http.StatusOK, meals)
+}

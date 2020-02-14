@@ -20,6 +20,7 @@ func (i *createInput) IsValid() (bool, string) {
 type updateInput struct {
   StaffID *int64 `json:"staff_id"`
   TableID *int64 `json:"table_id"`
+  SatisfactionRating *int `json:"satisfaction_rating"`
   MealIDs *[]int64 `json:"meal_ids"`
 }
 
