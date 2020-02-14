@@ -47,31 +47,6 @@ func (r *Resource) getAllHandler(c *gin.Context) {
   }
 }
 
-// getAllForRestaurantHandler is called when a HTTP GET request is sent to
-// /tables/restaurant/:id
-func (r *Resource) getAllForRestaurantHandler(c *gin.Context) {
-  // parse ID from URL
-  id, err := strconv.ParseInt(
-    c.Param("id"),
-    10,
-    64,
-  )
-  if err != nil {
-    c.JSON(http.StatusBadRequest, gin.H{"error": "Bad ID"})
-    return
-  }
-
-  // fetch all from database
-  tables, err := r.db.GetAllTablesForRestaurantID(id)
-  if err != nil {
-    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-    return
-  }
-
-  // return result as JSON
-  c.JSON(http.StatusOK, tables)
-}
-
 // getOneHandler is called when a HTTP GET request is made to /tables/{id}.
 func (r *Resource) getOneHandler(c *gin.Context) {
   // parse ID from URL
