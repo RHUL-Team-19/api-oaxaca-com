@@ -6,6 +6,7 @@ import (
   "api-oaxaca-com/packages/server"
   "api-oaxaca-com/resources/authentication"
   "api-oaxaca-com/resources/menu"
+  "api-oaxaca-com/resources/order"
   "api-oaxaca-com/resources/restaurant"
   "api-oaxaca-com/resources/staff"
   "api-oaxaca-com/resources/table"
@@ -33,6 +34,7 @@ func main() {
   s, err := server.New(
     authentication.New(pg),
     menu.New(pg),
+    order.New(pg),
     restaurant.New(pg),
     staff.New(pg),
     table.New(pg),

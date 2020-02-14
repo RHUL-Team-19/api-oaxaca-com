@@ -64,8 +64,8 @@ func (w *dbWrapper) GetAllTables() ([]table, error) {
 	}
 }
 
-// GetAllTables takes a restaurant ID and returns a slice containing all table
-// records in the database that belong to that restaurant.
+// GetAllTablesForRestaurantID takes a restaurant ID and returns a slice
+// containing all table records in the database that belong to that restaurant.
 func (w *dbWrapper) GetAllTablesForRestaurantID(id int64) ([]table, error) {
   // define space for result set
   var tables []table
@@ -81,7 +81,9 @@ func (w *dbWrapper) GetAllTablesForRestaurantID(id int64) ([]table, error) {
   }
 }
 
-// ...
+// UpdateTable takes an id and a pointer to an instance of an updateInput
+// struct and then fetches the table record in the database with the
+// corresponding id - and updates its fields.
 func (w *dbWrapper) UpdateTable(id int64, i*updateInput) error {
   // construct empty record
   r := table{

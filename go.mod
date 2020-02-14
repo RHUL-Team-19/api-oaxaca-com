@@ -7,6 +7,7 @@ require (
 	api-oaxaca-com/packages/server v0.0.0
 	api-oaxaca-com/resources/authentication v0.0.0
 	api-oaxaca-com/resources/menu v0.0.0
+	api-oaxaca-com/resources/order v0.0.0
 	api-oaxaca-com/resources/restaurant v0.0.0
 	api-oaxaca-com/resources/staff v0.0.0
 	api-oaxaca-com/resources/table v0.0.0
@@ -19,6 +20,7 @@ replace (
 	api-oaxaca-com/packages/server => ./packages/server
 	api-oaxaca-com/resources/authentication => ./resources/authentication
 	api-oaxaca-com/resources/menu => ./resources/menu
+	api-oaxaca-com/resources/order => ./resources/order
 	api-oaxaca-com/resources/restaurant => ./resources/restaurant
 	api-oaxaca-com/resources/staff => ./resources/staff
 	api-oaxaca-com/resources/table => ./resources/table
